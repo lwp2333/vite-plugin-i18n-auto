@@ -1,0 +1,62 @@
+{
+  "name": "vite-plugin-i18n-auto",
+  "version": "1.0.1",
+  "description": "Help front-end development to quickly implement i18n",
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "i18n",
+    "language-auto-tool"
+  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "license": "MIT",
+  "author": "lwp2333",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "pnpm unbuild --stub",
+    "build": "pnpm unbuild",
+    "prepublishOnly": "npm run build",
+    "prepack": "pnpm unbuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lwp2333/vite-plugin-i18n-auto"
+  },
+  "bugs": {
+    "url": "https://github.com/lwp2333/vite-plugin-i18n-auto/issues"
+  },
+  "homepage": "https://github.com/lwp2333/vite-plugin-i18n-auto/tree/master/#readme",
+  "peerDependencies": {
+    "prettier": "^2.7.1",
+    "vite": "^3.0.4"
+  },
+  "dependencies": {
+    "acorn": "^8.8.0",
+    "fs": "0.0.1-security",
+    "minimatch": "^5.1.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@babel/generator": "^7.18.10",
+    "@babel/parser": "^7.18.10",
+    "@babel/traverse": "^7.18.10",
+    "@babel/types": "^7.18.10",
+    "@types/babel__generator": "^7.6.4",
+    "@types/babel__traverse": "^7.18.0",
+    "@types/minimatch": "^3.0.5",
+    "@types/prettier": "^2.6.4",
+    "typescript": "^4.7.4",
+    "unbuild": "^0.7.4"
+  }
+}
