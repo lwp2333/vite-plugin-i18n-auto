@@ -13,6 +13,11 @@ interface Options {
    */
   enable: boolean
   /**
+   * @default false
+   * @note ast replace your code to call i18nCustomT(key,lang,[...injectData])
+   */
+  autoASTRepalce?: boolean
+  /**
    * @note glob pattern
    */
   include: string[]
@@ -38,6 +43,7 @@ interface Options {
 const vitePluginI18n = (option: Options): Plugin | undefined => {
   const {
     enable,
+    autoASTRepalce = false,
     include = [],
     exclude = [],
     langList = ['zh_cn', 'en'],
@@ -97,7 +103,7 @@ const vitePluginI18n = (option: Options): Plugin | undefined => {
               Types.identifier('_i18nCustomT'),
               [path.node, Types.identifier('_lang')]
             )
-            path.replaceWith(_i18nCustomTFun)
+            autoASTRepalce && path.replaceWith(_i18nCustomTFun)
           }
           if (Types.isTemplateLiteral(path.node)) {
             // has chineseCharacter
@@ -134,7 +140,7 @@ const vitePluginI18n = (option: Options): Plugin | undefined => {
                 Types.arrayExpression(path.node.expressions as any),
               ]
             )
-            path.replaceWith(_i18nCustomTFun)
+            autoASTRepalce && path.replaceWith(_i18nCustomTFun)
           }
         },
       })
@@ -161,7 +167,9 @@ const vitePluginI18n = (option: Options): Plugin | undefined => {
           Types.stringLiteral('./lang.json')
         )
 
-        success && ast.program.body.unshift(importLang, importCustomT)
+        success &&
+          autoASTRepalce &&
+          ast.program.body.unshift(importLang, importCustomT)
       }
       const resultCode = Generator(ast)
 
