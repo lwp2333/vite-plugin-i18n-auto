@@ -2,7 +2,31 @@ import fs from 'fs/promises'
 import _fs from 'fs'
 import path from 'path'
 import prettier from 'prettier'
-import { merge, isEqual } from 'lodash-es'
+import merge from 'lodash.merge'
+import isEqual from 'lodash.isequal'
+import type { ChalkInstance } from 'chalk'
+class Log {
+  private prefix: string = ''
+  private Chalk!: ChalkInstance
+  constructor(prefix: string) {
+    this.prefix = prefix
+    this.initChalk()
+  }
+  private async initChalk() {
+    this.Chalk = await import('chalk').then(res => res.default)
+  }
+  primary(text: string) {
+    console.log(this.Chalk.cyanBright(`${this.prefix}${text}`))
+  }
+  info(text: string) {
+    console.log(this.Chalk.greenBright(`${this.prefix}${text}`))
+  }
+  warning(text: string) {
+    console.log(this.Chalk.yellowBright(`${this.prefix}${text}`))
+  }
+}
+
+const log = new Log('vite-plugin-i18n-auto:')
 
 export const hasChineseCharacter = (code?: string) => {
   return code && /[\u{4E00}-\u{9FFF}]/gmu.test(code)
@@ -31,8 +55,6 @@ export const writeLang = async (
     if (isExit) {
       const res = await require(langDir)
       sourceJson = res || {}
-    } else {
-      console.log(`add ${langModulePath}`)
     }
     // generate a new lang object by current module file
     const moduleToLangJson = langList.reduce((pre, lang, index) => {
@@ -53,10 +75,13 @@ export const writeLang = async (
     }
     const formartText = await formatByPrettier(JSON.stringify(newLangJson))
     await fs.writeFile(langDir, formartText, 'utf-8')
-    isExit && console.log(`update  ${langModulePath}`)
+    isExit
+      ? log.info(`update  ${langModulePath}`)
+      : log.primary(`add ${langModulePath}`)
+
     return true
   } catch (error) {
-    console.log(error)
+    log.warning(error as string)
     return false
   }
 }

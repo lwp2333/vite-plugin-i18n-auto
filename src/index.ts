@@ -1,4 +1,4 @@
-import { Plugin } from 'vite'
+import type { Plugin } from 'vite'
 import Generator from '@babel/generator'
 import Parser from '@babel/parser'
 import Traverse from '@babel/traverse'
