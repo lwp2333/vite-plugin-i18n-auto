@@ -1,0 +1,38 @@
+{
+  "zh_cn": {
+    "普通字符串": "普通字符串",
+    "混搭": "混搭",
+    "哈哈哈哈": "哈哈哈哈",
+    "模版字符串": "模版字符串",
+    "今天是{$0}年{$1}月{$2}日": "今天是{$0}年{$1}月{$2}日",
+    "{$0}, 你仍是我的光芒": "{$0}, 你仍是我的光芒",
+    "模版中函数的参数": "模版中函数的参数",
+    "标题": "标题",
+    "无产者": "无产者",
+    "立即进入": "立即进入"
+  },
+  "en": {
+    "普通字符串": "To be translated",
+    "混搭": "To be translated",
+    "哈哈哈哈": "To be translated",
+    "模版字符串": "To be translated",
+    "今天是{$0}年{$1}月{$2}日": "To be translated",
+    "{$0}, 你仍是我的光芒": "To be translated",
+    "模版中函数的参数": "To be translated",
+    "标题": "To be translated",
+    "无产者": "To be translated",
+    "立即进入": "To be translated"
+  },
+  "jp": {
+    "普通字符串": "To be translated",
+    "混搭": "To be translated",
+    "哈哈哈哈": "To be translated",
+    "模版字符串": "To be translated",
+    "今天是{$0}年{$1}月{$2}日": "To be translated",
+    "{$0}, 你仍是我的光芒": "To be translated",
+    "模版中函数的参数": "To be translated",
+    "标题": "To be translated",
+    "无产者": "To be translated",
+    "立即进入": "To be translated"
+  }
+}

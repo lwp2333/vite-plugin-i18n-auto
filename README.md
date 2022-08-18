@@ -1,15 +1,17 @@
-## Install (pnpm or yarn)
+![vite-plugin-i18n-auto](https://cdn200.oss-cn-hangzhou.aliyuncs.com/md/vite-plugin-i18n-auto.png)
+
+
+
+## Install
 
 **node version:** >=12.0.0
 
-**vite version:** >=2.9.0
+**vite version:** >=3.0.4
 
 ```
 pnpm i vite-plugin-i18n-auto --save-dev
-
 // or
 yarn add vite-plugin-i18n-auto -D
-
 ```
 
 ## Usage
@@ -22,6 +24,11 @@ interface Options {
    * @note plugin enable ？
    */
   enable: boolean
+  /**
+   * @default false
+   * @note ast replace your code to call i18nCustomT(key,lang,[...injectData])
+   */
+  autoASTRepalce?: boolean
   /**
    * @note glob pattern
    */
@@ -54,7 +61,9 @@ export default () => {
     plugins: [
       vitePluginI18n({
         enable: true,
-        include: ['/src/**/.{vue,tsx,ts}'],
+        autoASTRepalce: true,
+        include: ['/src/**/*.{vue,tsx,ts}'],
+        exclude: [],
         langList: ['zh_cn', 'en'],
       }),
     ],
@@ -65,33 +74,30 @@ export default () => {
 - add i18nCustomT tranform function to /src/i18n/index.ts
 
 ```ts
-// 此函数内部可不能写中文，不然就递归循环了
+// 此函数内部不能写中文，不然就循环递归了(除非你已经忽略该文件)
 export const i18nCustomT = (
   key: string,
   lang: Record<string, any>,
   injectData?: Array<string | number>
 ) => {
   const langkey = window.localStorage.getItem('language') || 'zh_cn'
-  const langValue = lang?.[langkey]?.[key] as string
-  if (!injectData) return langValue
-  const [$0, $1, $2, $3, $4, $5, $6, $7, $8, $9] = injectData
-  const obj: Record<string, any> = {
-    $0,
-    $1,
-    $2,
-    $3,
-    $4,
-    $5,
-    $6,
-    $7,
-    $8,
-    $9,
-  }
-  const tempInjectValue = langValue.replace(/\{[^}]+\}/g, key => {
+  const text = lang?.[langkey]?.[key] as string
+  if (!injectData) return text
+
+  const injectDataMap: Record<string, string | number> = injectData.reduce(
+    (pre, cur, index) => {
+      return {
+        ...pre,
+        [`$${index}`]: cur,
+      }
+    },
+    {}
+  )
+  const injectValueText = text.replace(/\{[^}]+\}/g, key => {
     const varKey = key.replace('{', '').replace('}', '')
-    return obj[varKey] || key
+    return (injectDataMap[varKey] as string) || key
   })
-  return tempInjectValue
+  return injectValueText
 }
 ```
 

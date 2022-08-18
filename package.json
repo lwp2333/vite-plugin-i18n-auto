@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-i18n-auto",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Help front-end development to quickly implement i18n",
   "keywords": [
     "vite",
