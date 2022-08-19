@@ -23,7 +23,7 @@ devDependencies:
   terser: 5.14.2
   typescript: 4.7.4
   vite: 3.0.8_less@4.1.3+terser@5.14.2
-  vite-plugin-i18n-auto: 1.0.3_prettier@2.7.1+vite@3.0.8
+  vite-plugin-i18n-auto: 1.0.4_prettier@2.7.1+vite@3.0.8
   vue-tsc: 0.39.5_typescript@4.7.4
 
 packages:
@@ -804,8 +804,8 @@ packages:
       inherits: 2.0.3
     dev: true
 
-  /vite-plugin-i18n-auto/1.0.3_prettier@2.7.1+vite@3.0.8:
-    resolution: {integrity: sha512-HiTDX/g3ZTa185KgAGSjyBowRkOdzJKa5ne8Z+8RUDpv+7fh4P9QHe1OlGCIrRGYKMWfYPE5qd80E/pCDnucRA==}
+  /vite-plugin-i18n-auto/1.0.4_prettier@2.7.1+vite@3.0.8:
+    resolution: {integrity: sha512-sJPOKdyr02Uosl442PtiRTDdxFJAAgdcr5L8tBHsITgnf+05Nfamj/TX8fq/Vfi1HKFve3wb6vYDEdVpQOm4fA==}
     peerDependencies:
       prettier: ^2.7.1
       vite: ^3.0.4

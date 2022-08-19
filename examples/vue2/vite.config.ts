@@ -1,20 +1,39 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig, Plugin } from 'vite'
+import { createVuePlugin } from 'vite-plugin-vue2'
 import vitePluginI18n from 'vite-plugin-i18n-auto'
+
+const newPlugin = (): Plugin => {
+  return {
+    name: 'newPlugin',
+    transform(code: string, id: string) {
+      if (id.includes('App.vue')) {
+        console.log('id:>>>', id)
+        console.log('code:>>>', code)
+      }
+    },
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
     plugins: [
-      react(),
+      createVuePlugin({
+        jsx: true,
+      }),
       vitePluginI18n({
         enable: true,
         autoASTRepalce: true,
-        include: ['/src/**/*.{tsx,ts}'],
+        include: [
+          '/src/**/*.{vue,tsx,ts}',
+          // 匹配vue temperate
+          '/src/**/*.vue?vue&type=template&lang.js',
+        ],
         exclude: [],
         langList: ['zh_cn', 'en', 'jp'],
         ignoreMark: '!i18n:',
       }),
+      newPlugin(),
     ],
     // 基础配置
     publicDir: 'public',
@@ -27,14 +46,6 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 9527,
       open: true,
-    },
-    css: {
-      preprocessorOptions: {
-        less: {
-          modifyVars: {},
-          javascriptEnabled: true,
-        },
-      },
     },
     build: {
       outDir: 'dist',

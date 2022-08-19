@@ -10,7 +10,7 @@ specifiers:
   terser: ^5.14.2
   typescript: ^4.7.4
   vite: ^3.0.8
-  vite-plugin-i18n-auto: ^1.0.3
+  vite-plugin-i18n-auto: ^1.0.4
 
 dependencies:
   react: 18.2.0
@@ -24,7 +24,7 @@ devDependencies:
   terser: 5.14.2
   typescript: 4.7.4
   vite: 3.0.8_terser@5.14.2
-  vite-plugin-i18n-auto: 1.0.3_prettier@2.7.1+vite@3.0.8
+  vite-plugin-i18n-auto: 1.0.4_prettier@2.7.1+vite@3.0.8
 
 packages:
 
@@ -417,8 +417,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001377
-      electron-to-chromium: 1.4.222
+      caniuse-lite: 1.0.30001378
+      electron-to-chromium: 1.4.225
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.3
     dev: true
@@ -427,8 +427,8 @@ packages:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
     dev: true
 
-  /caniuse-lite/1.0.30001377:
-    resolution: {integrity: sha512-I5XeHI1x/mRSGl96LFOaSk528LA/yZG3m3iQgImGujjO8gotd/DL8QaI1R1h1dg5ATeI2jqPblMpKq4Tr5iKfQ==}
+  /caniuse-lite/1.0.30001378:
+    resolution: {integrity: sha512-JVQnfoO7FK7WvU4ZkBRbPjaot4+YqxogSDosHv0Hv5mWpUESmN+UubMU6L/hGz8QlQ2aY5U0vR6MOs6j/CXpNA==}
     dev: true
 
   /chalk/2.4.2:
@@ -481,8 +481,8 @@ packages:
       ms: 2.1.2
     dev: true
 
-  /electron-to-chromium/1.4.222:
-    resolution: {integrity: sha512-gEM2awN5HZknWdLbngk4uQCVfhucFAfFzuchP3wM3NN6eow1eDU0dFy2kts43FB20ZfhVFF0jmFSTb1h5OhyIg==}
+  /electron-to-chromium/1.4.225:
+    resolution: {integrity: sha512-ICHvGaCIQR3P88uK8aRtx8gmejbVJyC6bB4LEC3anzBrIzdzC7aiZHY4iFfXhN4st6I7lMO0x4sgBHf/7kBvRw==}
     dev: true
 
   /esbuild-android-64/0.14.54:
@@ -971,8 +971,8 @@ packages:
       inherits: 2.0.3
     dev: true
 
-  /vite-plugin-i18n-auto/1.0.3_prettier@2.7.1+vite@3.0.8:
-    resolution: {integrity: sha512-HiTDX/g3ZTa185KgAGSjyBowRkOdzJKa5ne8Z+8RUDpv+7fh4P9QHe1OlGCIrRGYKMWfYPE5qd80E/pCDnucRA==}
+  /vite-plugin-i18n-auto/1.0.4_prettier@2.7.1+vite@3.0.8:
+    resolution: {integrity: sha512-sJPOKdyr02Uosl442PtiRTDdxFJAAgdcr5L8tBHsITgnf+05Nfamj/TX8fq/Vfi1HKFve3wb6vYDEdVpQOm4fA==}
     peerDependencies:
       prettier: ^2.7.1
       vite: ^3.0.4

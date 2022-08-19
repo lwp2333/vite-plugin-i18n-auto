@@ -39,7 +39,7 @@ const App = () => {
   return (
     <div className="App">
       {textMap.map((it, index) => {
-        return <span key={index}>{it}</span>
+        return <li key={index}>{it}</li>
       })}
       <div title="标题" onClick={hanldeClick}>
         立即进入
