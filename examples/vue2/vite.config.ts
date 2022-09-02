@@ -1,18 +1,6 @@
-import { defineConfig, Plugin } from 'vite'
+import { defineConfig } from 'vite'
 import { createVuePlugin } from 'vite-plugin-vue2'
 import vitePluginI18n from 'vite-plugin-i18n-auto'
-
-const newPlugin = (): Plugin => {
-  return {
-    name: 'newPlugin',
-    transform(code: string, id: string) {
-      if (id.includes('App.vue')) {
-        console.log('id:>>>', id)
-        console.log('code:>>>', code)
-      }
-    },
-  }
-}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -33,7 +21,6 @@ export default defineConfig(({ mode }) => {
         langList: ['zh_cn', 'en', 'jp'],
         ignoreMark: '!i18n:',
       }),
-      newPlugin(),
     ],
     // 基础配置
     publicDir: 'public',

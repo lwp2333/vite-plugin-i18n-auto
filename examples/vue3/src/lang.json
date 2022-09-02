@@ -1,5 +1,6 @@
 {
   "zh_cn": {
+    "你好世界": "你好世界",
     "普通字符串": "普通字符串",
     "混搭": "混搭",
     "哈哈哈哈": "哈哈哈哈",
@@ -12,6 +13,7 @@
     "立即进入": "立即进入"
   },
   "en": {
+    "你好世界": "To be translated",
     "普通字符串": "To be translated",
     "混搭": "To be translated",
     "哈哈哈哈": "To be translated",
@@ -24,6 +26,7 @@
     "立即进入": "Go"
   },
   "jp": {
+    "你好世界": "To be translated",
     "普通字符串": "To be translated",
     "混搭": "To be translated",
     "哈哈哈哈": "To be translated",
