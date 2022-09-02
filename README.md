@@ -67,6 +67,11 @@ export default () => {
         langList: ['zh_cn', 'en'],
       }),
     ],
+    resolve: {
+      alias: {
+        '@': '/src/', // 这是必须的 i18nCustomT 函数自动导入路径为 @/i18n
+      },
+    },
   }
 }
 ```

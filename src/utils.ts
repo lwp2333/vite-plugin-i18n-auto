@@ -24,6 +24,9 @@ class Log {
   warning(text: string) {
     console.log(this.Chalk.yellowBright(`${this.prefix}${text}`))
   }
+  error(text: string) {
+    console.log(this.Chalk.redBright(`${this.prefix}${text}`))
+  }
 }
 
 const log = new Log('vite-plugin-i18n-auto:')
@@ -51,37 +54,42 @@ export const writeLang = async (
   const langModulePath = langDir.replace(process.cwd(), '')
   let sourceJson: Record<string, any> = {}
   const isExit = _fs.existsSync(langDir)
-  try {
-    if (isExit) {
-      const res = await require(langDir)
-      sourceJson = res || {}
-    }
-    // generate a new lang object by current module file
-    const moduleToLangJson = langList.reduce((pre, lang, index) => {
-      return {
-        ...pre,
-        [lang]: keyList.reduce((pre, key) => {
-          return {
-            ...pre,
-            [key]: index === 0 ? key : placeholder,
-          }
-        }, {}),
-      }
-    }, {})
-    const newLangJson = merge(moduleToLangJson, sourceJson)
-    if (isEqual(sourceJson, newLangJson)) {
-      // skip update
+  if (isExit) {
+    const res = await fs.readFile(langDir, { encoding: 'utf-8' })
+    try {
+      sourceJson = JSON.parse(res) || {}
+    } catch (error) {
+      // parse sourceJson failed directly return true
       return true
     }
+  }
+  // generate a new lang object by current module file
+  const moduleToLangJson = langList.reduce((pre, lang, index) => {
+    return {
+      ...pre,
+      [lang]: keyList.reduce((pre, key) => {
+        return {
+          ...pre,
+          [key]: index === 0 ? key : placeholder,
+        }
+      }, {}),
+    }
+  }, {})
+  const newLangJson = merge(moduleToLangJson, sourceJson)
+  if (isEqual(sourceJson, newLangJson)) {
+    // skip update
+    return true
+  }
+  try {
     const formartText = await formatByPrettier(JSON.stringify(newLangJson))
     await fs.writeFile(langDir, formartText, 'utf-8')
     isExit
-      ? log.info(`update  ${langModulePath}`)
-      : log.primary(`add ${langModulePath}`)
+      ? log.info(`update ${langModulePath} success`)
+      : log.primary(`add ${langModulePath} success`)
 
     return true
   } catch (error) {
-    log.warning(error as string)
+    log.error(`${langModulePath} ${error as string}`)
     return false
   }
 }

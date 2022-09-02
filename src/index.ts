@@ -3,7 +3,7 @@ import Generator from '@babel/generator'
 import Parser from '@babel/parser'
 import Traverse from '@babel/traverse'
 import Types from '@babel/types'
-import Acorn from 'acorn'
+import { parse as AcornParse } from 'acorn'
 import Minimatch from 'minimatch'
 import { hasChineseCharacter, writeLang } from './utils'
 
@@ -152,7 +152,7 @@ const vitePluginI18n = (option: Options): Plugin | undefined => {
           langList,
           placeholder
         )
-        // import _lang _i18nCustomT
+        // import _lang and _i18nCustomT
         const importCustomT = Types.importDeclaration(
           [
             Types.importSpecifier(
@@ -175,20 +175,21 @@ const vitePluginI18n = (option: Options): Plugin | undefined => {
 
       return {
         ...resultCode,
-        ast: Acorn.parse(resultCode.code, {
+        ast: AcornParse(resultCode.code, {
           sourceType: 'module',
           ecmaVersion: 'latest',
         }),
       }
     },
-    handleHotUpdate({ file, server }) {
-      if (Minimatch(file, '/**/lang.json')) {
-        server.ws.send({
-          type: 'full-reload',
-          path: file,
-        })
-      }
-    },
+    // remove unused
+    // handleHotUpdate({ file, server }) {
+    //   if (Minimatch(file, '/**/lang.json')) {
+    //     server.ws.send({
+    //       type: 'full-reload',
+    //       path: file,
+    //     })
+    //   }
+    // },
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-i18n-auto",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Help front-end development to quickly implement i18n",
   "keywords": [
     "vite",
@@ -25,9 +25,7 @@
   ],
   "scripts": {
     "dev": "pnpm unbuild --stub",
-    "build": "pnpm unbuild",
-    "prepublishOnly": "npm run build",
-    "prepack": "pnpm unbuild"
+    "build": "pnpm unbuild"
   },
   "repository": {
     "type": "git",
@@ -38,31 +36,31 @@
   },
   "homepage": "https://github.com/lwp2333/vite-plugin-i18n-auto/tree/master/#readme",
   "peerDependencies": {
-    "prettier": "^2.7.1",
     "vite": "^3.0.4"
   },
   "dependencies": {
+    "@babel/generator": "^7.18.13",
+    "@babel/parser": "^7.18.13",
+    "@babel/traverse": "^7.18.13",
+    "@babel/types": "^7.18.13",
     "acorn": "^8.8.0",
     "chalk": "^5.0.1",
     "fs": "0.0.1-security",
     "lodash.isequal": "^4.5.0",
     "lodash.merge": "^4.6.2",
     "minimatch": "^5.1.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "prettier": "^2.7.1"
   },
   "devDependencies": {
-    "@babel/generator": "^7.18.10",
-    "@babel/parser": "^7.18.10",
-    "@babel/traverse": "^7.18.10",
-    "@babel/types": "^7.18.10",
     "@types/babel__generator": "^7.6.4",
-    "@types/babel__traverse": "^7.18.0",
+    "@types/babel__traverse": "^7.18.1",
     "@types/lodash.isequal": "^4.5.6",
     "@types/lodash.merge": "^4.6.7",
     "@types/minimatch": "^3.0.5",
-    "@types/node": "^18.7.1",
-    "@types/prettier": "^2.6.4",
-    "typescript": "^4.7.4",
-    "unbuild": "^0.7.4"
+    "@types/node": "^18.7.14",
+    "@types/prettier": "^2.7.0",
+    "typescript": "^4.8.2",
+    "unbuild": "^0.7.6"
   }
 }
