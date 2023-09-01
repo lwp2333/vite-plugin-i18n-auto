@@ -2,8 +2,6 @@ import fs from 'fs/promises'
 import _fs from 'fs'
 import path from 'path'
 import prettier from 'prettier'
-import merge from 'lodash.merge'
-import isEqual from 'lodash.isequal'
 import type { ChalkInstance } from 'chalk'
 class Log {
   private prefix: string = ''
@@ -70,18 +68,14 @@ export const writeLang = async (
       [lang]: keyList.reduce((pre, key) => {
         return {
           ...pre,
-          [key]: index === 0 ? key : placeholder,
+          [key]: index === 0 ? key : sourceJson?.[lang]?.[key] || placeholder,
         }
       }, {}),
     }
   }, {})
-  const newLangJson = merge(moduleToLangJson, sourceJson)
-  if (isEqual(sourceJson, newLangJson)) {
-    // skip update
-    return true
-  }
+
   try {
-    const formartText = await formatByPrettier(JSON.stringify(newLangJson))
+    const formartText = await formatByPrettier(JSON.stringify(moduleToLangJson))
     await fs.writeFile(langDir, formartText, 'utf-8')
     isExit
       ? log.info(`update ${langModulePath} success`)

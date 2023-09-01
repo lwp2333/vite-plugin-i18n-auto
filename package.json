@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-i18n-auto",
-  "version": "1.0.5",
+  "version": "1.0.9",
   "description": "Help front-end development to quickly implement i18n",
   "keywords": [
     "vite",
@@ -46,8 +46,6 @@
     "acorn": "^8.8.0",
     "chalk": "^5.0.1",
     "fs": "0.0.1-security",
-    "lodash.isequal": "^4.5.0",
-    "lodash.merge": "^4.6.2",
     "minimatch": "^5.1.0",
     "path": "^0.12.7",
     "prettier": "^2.7.1"
