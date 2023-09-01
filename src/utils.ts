@@ -2,6 +2,7 @@ import fs from 'fs/promises'
 import _fs from 'fs'
 import path from 'path'
 import prettier from 'prettier'
+import { isEqual } from 'lodash-es'
 import type { ChalkInstance } from 'chalk'
 class Log {
   private prefix: string = ''
@@ -73,7 +74,10 @@ export const writeLang = async (
       }, {}),
     }
   }, {})
-
+  if (isEqual(moduleToLangJson, sourceJson)) {
+    // skip update
+    return true
+  }
   try {
     const formartText = await formatByPrettier(JSON.stringify(moduleToLangJson))
     await fs.writeFile(langDir, formartText, 'utf-8')
